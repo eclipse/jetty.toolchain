@@ -3,7 +3,6 @@
     <groupId>org.eclipse.jetty.toolchain</groupId>
     <artifactId>jetty-toolchain</artifactId>
     <version>1.6</version>
-    <relativePath>../jetty-toolchain</relativePath>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -22,11 +21,6 @@
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
       <version>5.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty.toolchain</groupId>
-      <artifactId>jetty-schemas</artifactId>
-      <version>5.2</version>
     </dependency>
   </dependencies>
 
@@ -120,7 +114,6 @@
             <Export-Package>
               jakarta.servlet;uses:="jakarta.servlet.annotation,jakarta.servlet.descriptor";version="5.0.0",
               jakarta.servlet.resources;version="5.0.0",
-              jakarta.servlet.jsp.resources;version="5.0.0",
               jakarta.servlet.annotation;uses:="jakarta.servlet";version="5.0.0",
               jakarta.servlet.http;uses:="jakarta.servlet";version="5.0.0",
               jakarta.servlet.descriptor;version="5.0.0"
@@ -156,13 +149,19 @@
                   <artifact>jakarta.servlet:jakarta.servlet-api</artifact>
                   <includes>
                     <include>jakarta/**/*.properties</include>
+                    <include>jakarta/**/*.xsd</include>
+                    <include>jakarta/**/*.dtd</include>
                     <include>jakarta/**/package.html</include>
                   </includes>
+                  <excludes>
+                    <exclude>jakarta/servlet/jsp/**</exclude>
+                    <exclude>META-INF/**</exclude>
+                    <exclude>about.html</exclude>
+                  </excludes>
                 </filter>
                 <filter>
                   <artifact>*:*</artifact>
                   <excludes>
-                    <exclude>jakarta/servlet/jsp/**</exclude>
                     <exclude>META-INF/**</exclude>
                     <exclude>about.html</exclude>
                   </excludes>
